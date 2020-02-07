@@ -48,4 +48,7 @@ uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
 		${DESTDIR}${MANPREFIX}/man1/dwm.1
 
+lightdm:
+	cp lightdm.desktop /usr/share/xsessions/dwm.desktop
+
 .PHONY: all options clean dist install uninstall
