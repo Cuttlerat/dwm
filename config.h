@@ -51,7 +51,7 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "HHH",      grid },
+	{ "\uE011",   grid },
 };
 
 /* key definitions */
@@ -65,11 +65,30 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
+/* key definitions */
+#define XF86MonBrightnessDown           0x1008ff03
+#define XF86MonBrightnessUp             0x1008ff02
+#define XF86AudioLowerVolume            0x1008ff11
+#define XF86AudioMute                   0x1008ff12
+#define XF86AudioRaiseVolume            0x1008ff13
+#define XF86KbdBrightnessDown           0x1008ff06
+#define XF86KbdBrightnessUp             0x1008ff05
+
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_red1, "-sf", col_gray5, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *screenlock[]  = { "dm-tool", "lock", NULL };
+
+static const char *cmdbrightnessup[]  = { "dwm_stat", "sudo", "brightness", "up", NULL };
+static const char *cmdbrightnessdown[]  = { "dwm_stat", "sudo", "brightness", "down", NULL };
+static const char *cmdkbbrightup[]  = { "dwm_stat", "sudo", "kb_brightness", "up", NULL };
+static const char *cmdkbbrightdown[]  = { "dwm_stat", "sudo", "kb_brightness", "down", NULL };
+
+static const char *mutecmd[] = { "dwm_stat", "amixer", "-q", "set", "Master", "toggle", NULL };
+static const char *volupcmd[] = { "dwm_stat", "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
+static const char *voldowncmd[] = { "dwm_stat", "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
+
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -108,6 +127,13 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { 0,                       XF86MonBrightnessDown, spawn,   {.v = cmdbrightnessdown } },
+    { 0,                       XF86MonBrightnessUp,   spawn,   {.v = cmdbrightnessup }   },
+    { 0,                       XF86KbdBrightnessDown, spawn,   {.v = cmdkbbrightdown }   },
+    { 0,                       XF86KbdBrightnessUp,   spawn,   {.v = cmdkbbrightup }     },
+    { 0,                       XF86AudioLowerVolume,  spawn,   {.v = voldowncmd } },
+    { 0,                       XF86AudioRaiseVolume,  spawn,   {.v = volupcmd }   },
+    { 0,                       XF86AudioMute,         spawn,   {.v = mutecmd }    },
 };
 
 /* button definitions */
