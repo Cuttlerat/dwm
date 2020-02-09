@@ -21,10 +21,10 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray3, col_red2, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_red1,  col_red1  },
 	[SchemeStatus]  = { col_red1, col_gray5,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-	[SchemeTagsSel]  = { col_gray4, col_red1,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_gray5, col_red1,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
     [SchemeTagsNorm]  = { col_red1, col_gray5,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-    [SchemeInfoSel]  = { col_gray4, col_gray5,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-    [SchemeInfoNorm]  = { col_gray3, col_gray5,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+    [SchemeInfoSel]  = { col_red1, col_gray5,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+    [SchemeInfoNorm]  = { col_gray5, col_gray5,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
@@ -77,9 +77,11 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_red1, "-sf", col_gray5, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_red1, "-sb", col_red1, "-sf", col_gray5, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *screenlock[]  = { "dm-tool", "lock", NULL };
+static const char *surf[]  = { "surf", NULL };
+static const char *flameshot[]  = { "flameshot", "gui", NULL };
 
 static const char *cmdbrightnessup[]  = { "dwm_stat", "sudo", "brightness", "up", NULL };
 static const char *cmdbrightnessdown[]  = { "dwm_stat", "sudo", "brightness", "down", NULL };
@@ -96,6 +98,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = screenlock } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = surf } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = flameshot } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
