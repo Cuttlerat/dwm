@@ -82,6 +82,8 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *screenlock[]  = { "dm-tool", "lock", NULL };
 static const char *surf[]  = { "surf", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", NULL };
+static const char *mpvyt[]  = { "mpvyt", "gui", NULL };
+static const char *dwmkill[]  = { "dwm_kill", NULL };
 
 static const char *cmdbrightnessup[]  = { "dwm_stat", "sudo", "brightness", "up", NULL };
 static const char *cmdbrightnessdown[]  = { "dwm_stat", "sudo", "brightness", "down", NULL };
@@ -100,6 +102,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = screenlock } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = surf } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = flameshot } },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = mpvyt } },
+	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = dwmkill } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -131,7 +135,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     { 0,                       XF86MonBrightnessDown, spawn,   {.v = cmdbrightnessdown } },
     { 0,                       XF86MonBrightnessUp,   spawn,   {.v = cmdbrightnessup }   },
     { 0,                       XF86KbdBrightnessDown, spawn,   {.v = cmdkbbrightdown }   },
