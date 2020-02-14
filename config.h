@@ -35,11 +35,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "mpv",     NULL,       NULL,       0,            1,           -1 },
-	{ "com-sittinglittleduck-DirBuster-Start",     NULL,       NULL,       0,            1,           -1 },
-	{ "Microsoft Teams - Preview",     NULL,       "Microsoft Teams Notification",       1<<8,            1,           -1 },
+	/* class      instance    title       tags mask     isfloating canfocus   monitor */
+	{ "Gimp",     NULL,       NULL,       0,            1,         1,         -1 },
+	{ "mpv",     NULL,       NULL,       0,            1,           1,           -1 },
+	{ "com-sittinglittleduck-DirBuster-Start",     NULL,       NULL,       0,            1,           1,           -1 },
+	{ "Microsoft Teams - Preview",     NULL,       "Microsoft Teams Notification",       1<<8,            1,           0,           -1 },
 };
 
 /* layout(s) */
