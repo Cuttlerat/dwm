@@ -6,8 +6,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=9" };
+static const char dmenufont[]       = "monospace:size=9";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -85,10 +85,8 @@ static const char *flameshot[]  = { "flameshot", "gui", NULL };
 static const char *mpvyt[]  = { "mpvyt", "gui", NULL };
 static const char *dwmkill[]  = { "dwm_kill", NULL };
 
-static const char *cmdbrightnessup[]  = { "dwm_stat", "sudo", "brightness", "up", NULL };
-static const char *cmdbrightnessdown[]  = { "dwm_stat", "sudo", "brightness", "down", NULL };
-static const char *cmdkbbrightup[]  = { "dwm_stat", "sudo", "kb_brightness", "up", NULL };
-static const char *cmdkbbrightdown[]  = { "dwm_stat", "sudo", "kb_brightness", "down", NULL };
+static const char *cmdbrightnessup[]  = { "dwm_stat", "brightness", "up", NULL };
+static const char *cmdbrightnessdown[]  = { "dwm_stat", "brightness", "down", NULL };
 
 static const char *mutecmd[] = { "dwm_stat", "amixer", "-q", "set", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "dwm_stat", "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
@@ -101,7 +99,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = screenlock } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = surf } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = flameshot } },
+	{ MODKEY,                       XK_Print,  spawn,          {.v = flameshot } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = mpvyt } },
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = dwmkill } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -135,13 +133,18 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-    { 0,                       XF86MonBrightnessDown, spawn,   {.v = cmdbrightnessdown } },
-    { 0,                       XF86MonBrightnessUp,   spawn,   {.v = cmdbrightnessup }   },
-    { 0,                       XF86KbdBrightnessDown, spawn,   {.v = cmdkbbrightdown }   },
-    { 0,                       XF86KbdBrightnessUp,   spawn,   {.v = cmdkbbrightup }     },
-    { 0,                       XF86AudioLowerVolume,  spawn,   {.v = voldowncmd } },
-    { 0,                       XF86AudioRaiseVolume,  spawn,   {.v = volupcmd }   },
-    { 0,                       XF86AudioMute,         spawn,   {.v = mutecmd }    },
+       { 0,                             XK_F11,    spawn,   {.v = cmdbrightnessdown } },
+       { 0,                             XK_F12,    spawn,   {.v = cmdbrightnessup }   },
+       { 0,                             XK_F2,     spawn,   {.v = voldowncmd } },
+       { 0,                             XK_F3,     spawn,   {.v = volupcmd }   },
+       { 0,                             XK_F1,     spawn,   {.v = mutecmd }    },
+    //{ 0,                       XF86MonBrightnessDown, spawn,   {.v = cmdbrightnessdown } },
+    //{ 0,                       XF86MonBrightnessUp,   spawn,   {.v = cmdbrightnessup }   },
+    //{ 0,                       XF86KbdBrightnessDown, spawn,   {.v = cmdkbbrightdown }   },
+    //{ 0,                       XF86KbdBrightnessUp,   spawn,   {.v = cmdkbbrightup }     },
+    //{ 0,                       XF86AudioLowerVolume,  spawn,   {.v = voldowncmd } },
+    //{ 0,                       XF86AudioRaiseVolume,  spawn,   {.v = volupcmd }   },
+    //{ 0,                       XF86AudioMute,         spawn,   {.v = mutecmd }    },
 };
 
 /* button definitions */
