@@ -35,11 +35,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "mpv",     NULL,       NULL,       0,            1,           -1 },
-	{ "com-sittinglittleduck-DirBuster-Start",     NULL,       NULL,       0,            1,           -1 },
-	{ "Microsoft Teams - Preview",     NULL,       "Microsoft Teams Notification",       0,            1,           -1 },
+	/* class      instance    title       tags mask     isfloating canfocus   monitor */
+	{ "Gimp",     NULL,       NULL,       0,            1,         1,         -1 },
+	{ "mpv",     NULL,       NULL,       0,            1,           1,           -1 },
+	{ "com-sittinglittleduck-DirBuster-Start",     NULL,       NULL,       0,            1,           1,           -1 },
+	{ "Microsoft Teams - Preview",     NULL,       "Microsoft Teams Notification",       1<<8,            1,           0,           -1 },
 };
 
 /* layout(s) */
@@ -53,6 +53,8 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 	{ "\uE011",   grid },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
 };
 
 /* key definitions */
@@ -97,7 +99,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = screenlock } },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = screenlock } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = surf } },
 	{ MODKEY,                       XK_Print,  spawn,          {.v = flameshot } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = mpvyt } },
@@ -116,14 +118,16 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_l,  	   focusmon,       {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_h,      focusmon,       {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_l,      tagmon,         {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_h,      tagmon,         {.i = +1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
