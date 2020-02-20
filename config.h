@@ -39,7 +39,8 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            1,         1,         -1 },
 	{ "mpv",     NULL,       NULL,       0,            1,           1,           -1 },
 	{ "com-sittinglittleduck-DirBuster-Start",     NULL,       NULL,       0,            1,           1,           -1 },
-	{ "Microsoft Teams - Preview",     NULL,       "Microsoft Teams Notification",       1<<8,            1,           0,           -1 },
+	{ "Microsoft Teams - Preview",     NULL,       "Microsoft Teams Notification",       0,            1,           0,           -1 },
+	{ "Firefox-esr", NULL, "Authentication Required", 0, 1, 1, -1 },
 };
 
 /* layout(s) */
@@ -82,7 +83,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_red1, "-sb", col_red1, "-sf", col_gray5, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *screenlock[]  = { "dm-tool", "lock", NULL };
-static const char *surf[]  = { "surf", NULL };
+static const char *firefox[]  = { "firefox", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", NULL };
 static const char *mpvyt[]  = { "mpvyt", "gui", NULL };
 static const char *dwmkill[]  = { "dwm_kill", NULL };
@@ -100,7 +101,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = screenlock } },
-	{ MODKEY,                       XK_s,      spawn,          {.v = surf } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = firefox } },
 	{ MODKEY,                       XK_Print,  spawn,          {.v = flameshot } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = mpvyt } },
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = dwmkill } },
